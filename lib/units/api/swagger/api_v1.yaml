@@ -1670,6 +1670,25 @@ paths:
             $ref: "#/definitions/UnexpectedErrorResponse"
       security:
         - accessTokenAuth: []
+  /user/jwtToken:
+    x-swagger-router-controller: user
+    get:
+      summary: Jwt Token
+      description: The Jwt Token endpoints returns a jwt token
+      operationId: getUserJwtToken
+      tags:
+        - user
+      responses:
+        "200":
+          description: Access Tokens titles
+          schema:
+            $ref: "#/definitions/JwtTokenResponse"
+        default:
+          description: Unexpected Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      security:
+        - accessTokenAuth: []
   /user/adbPublicKeys:
     x-swagger-router-controller: user
     post:
@@ -2317,6 +2336,18 @@ definitions:
         type: array
         items:
           type: string
+  JwtTokenResponse:
+    required:
+      - success
+      - description
+      - jwt
+    properties:
+      success:
+        type: boolean
+      description:
+        type: string
+      jwt:
+        type: string
   DeviceListResponse:
     required:
       - success

@@ -317,6 +317,35 @@
         ]
       }
     },
+    "/user/JwtToken": {
+      "get": {
+        "summary": "JWT Token",
+        "description": "The JWT Token endpoints returns a jwt token",
+        "operationId": "getUserJwtToken",
+        "tags": [
+          "user"
+        ],
+        "responses": {
+          "200": {
+            "description": "JWT token",
+            "schema": {
+              "$ref": "#/definitions/JwtTokenResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "accessTokenAuth": []
+          }
+        ]
+      }
+    },
     "/devices": {
       "get": {
         "summary": "Device List",
@@ -423,6 +452,16 @@
           "items": {
             "type": "string"
           }
+        }
+      }
+    },
+    "JwtTokenResponse": {
+      "required": [
+        "jwt"
+      ],
+      "properties": {
+        "jwt": {
+            "type": "string"
         }
       }
     },
